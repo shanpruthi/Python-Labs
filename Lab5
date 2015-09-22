@@ -1,0 +1,98 @@
+# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab5.pdf for lab
+
+# question 1
+
+def sorting1(lis):
+    if lis == sorted(lis):
+        return True
+    return False
+
+#aliousing
+def sorting2(lis):
+    y = lis.copy()
+    lis.sort()
+    if y == lis:
+        return True
+    return False
+
+def looping(lis):
+    for i in range(len(lis)-1):
+        if lis[i] > lis[i+1]:
+            return False
+    return True
+
+# question 2
+
+def printingpets(lis):
+    for i in range(len(lis)):
+        print(lis[i])
+
+def secondelementpets(lis):
+    for i in range(len(lis)):
+        print(lis[i][1])
+
+def examining(lis):
+    x = 0
+    for i in lis:
+        x = x + i[2]
+    print(x)
+
+def dogcounter(lis):
+    counter = 0
+    for i in lis:
+        if i[1] == 'dog':
+            counter = counter + 1
+    print(counter)
+        
+# question 3
+def nested_lengths(L):
+    a = []
+    for i in L:
+        if type(i) == list:
+            a.append(len(i))
+        else:
+            a.append(type(i))
+    print(a)
+
+# question 4
+
+def is_prime(n):
+    import math
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    
+    if n % 2 == 0:
+        return False
+    
+    for i in range(3, int(math.ceil(math.sqrt(n))) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+    
+    
+
+def get_factors(n):
+    a = []    
+    for i in range(n):
+        if i == 0:
+            continue
+        else: 
+            if n%i == 0:
+                if is_prime(i) == True:
+                    a.append(i)
+    print(a)
+# to get repeated prime factors, do while n is not prime, divide by the smallest prime
+
+def simplify_fractions(frac):
+    for i in (range(frac[0]+1)):
+        if i != 0:          
+            if frac[0]%i == 0 and fra[1]%i == 0:
+                a = i
+    print(frac[0]//a, frac[1]//a)
+    
+    
+            
+                
+            
