@@ -1,0 +1,139 @@
+# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab1.pdf to access Lab 1
+# 1
+print("Welcome to the calculator program.")
+print ('Current Value: 0')
+
+# 2
+x = 0
+y = 0
+def display_current_value():
+    print(float(x))
+# not updating, so no need to declare as global
+
+# 3
+def add(to_add):
+    global x
+    global y 
+    y = x
+    x = x + (to_add)
+    print(float(x))
+    
+# 4
+def multiply(to_mult):
+    global x
+    global y
+    y = x
+    x = x*(to_mult)
+    print(float(x))
+    
+# 5
+def divide(to_div):
+    if to_div == 0:
+        print("Undefined")
+    else:
+        global x
+        global y
+        y = x
+        x = x/(to_div)
+        print(float(x))
+    
+
+# 6 (memory and recall button)
+z = 0
+    
+def memory():
+    global z
+    z = x
+    print("z is stored as", z)
+
+def recall():
+    print(float(z))
+
+# 7 undo
+def undo():
+    global x
+    global y
+    x = y
+    print(float(x))
+    
+# bonus question
+def pow(exponent):
+    global x
+    global y
+    y = x
+    l = 1    
+    if exponent < 0:
+        for i in range(-exponent):
+            l = l/x
+    else:    
+        for i in range(exponent):        
+            l = l*x
+    x = l
+    print(float(x))
+        
+        # 1st-3 2nd-9 3rd-27 4th-81
+        
+# Calculator extended
+
+'''Define the following functions:
+exp(x)
+sin(x)
+cos(x)
+
+They should return e^x, sin(x) and cos(x) respectively, correct to 3 decimal places.
+
+HINTS
+1. Use the MacLaurin series representations.
+
+2. Define a separate function is_accurate(x, y) which returns True if x and y are equal to 3 decimal places. Return False otherwise.
+
+3. You can define a separate function that does a complicated mathematical operation. This function can be used in your main function. See example.
+''' 
+# Example for point 3:
+
+def f(x):
+    # Do the following operation: f(x) = 5x^2 + 10x + 3
+    return 5*x*x + 10*x + 3
+
+def g(y):
+    # Use f(x) to make the function neater
+    return f(y)*y
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# If you need to use any additional functions (e.g. is_accurate), define them here.
+
+def factorial(x):
+    answer = 1
+    for i in range(x):
+        answer = answer * (x - i)
+    return(answer)
+
+def exp(x):
+    res = 0
+    for i in range(5):
+        res = res + x**i/factorial(i)
+        print(res)
+
+def sin(x):
+    sinresult = 0
+    '''    
+    for k in range(5):
+        sinresult = sinresult + (-1)**(k)*x**(2*(k)+1)/factorial(2*(k) + 1)
+        print(sinresult)
+    '''   
+    k = 0
+    while int(sinresult*1000) != int(1000*(sinresult + (-1)**(k)*x**(2*(k)+1)/factorial(2*(k) + 1))):
+        sinresult = sinresult + (-1)**(k)*x**(2*(k)+1)/factorial(2*(k) + 1)
+        k = k + 1
+        print(sinresult)
+def cos(x):
+    cosresult = 0
+    w = 0
+    while int(cosresult*1000) != int(1000*(cosresult + (-1)**(w)*x**(2*(w))/factorial(2*(w)))):
+        cosresult = cosresult + (-1)**(w)*x**(2*(w))/factorial(2*(w))
+        w = w + 1
+        print(cosresult)
+
+    
+'''Now, modify exp(x) to exp(x, a) which returns e^x correct to (a) decimal places. Repeat for sin, cos.
+'''
