@@ -1,0 +1,113 @@
+# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab6.pdf for lab
+# question 1
+num_courses = [["EngSci", 6],
+                 ["ArtSci", 5],
+                 ["Music", 5]]
+
+def get_value(mapp, key):
+    for i in mapp:
+        if key == i[0]:
+            return i[1]
+    return 'NA'
+
+# question 2 
+
+def modify_value(mapp,key,value):
+    for i in mapp:
+        if key == i[0]:
+            i[1] = value
+            return mapp
+    mapp.append([key, value])
+    return mapp
+
+# question 3
+
+def make_map(keys, values):
+    c = []
+    for i in range(len(keys)):
+        c.append([keys[i],values[i]])
+    return c
+
+# question 4
+
+def remove_entry(mapp,key):
+    for i in range(len(mapp)):
+        if mapp[i][0] == key:
+            mapp.pop(i)
+            return mapp
+
+# question 5
+
+def get_reverse_lookup_map(mapp, value):
+    a = []
+    for i in mapp:
+        if i[1] == value:
+            a.append(i[0])
+    return a
+
+# question 6
+
+def remove_by_value(mapp, value):
+    i = 0
+    while i < len(mapp):
+        if value == mapp[i][1]:
+            mapp.pop(i)
+        else:
+            i = i + 1
+    return mapp
+
+# question 7
+       
+def invert_map(mapp):
+    keys = []
+    values = []
+    for entry in mapp:
+        if entry[1] in keys:
+            x = keys.index(entry[1])
+            values[x].append(entry[0])
+        else:
+            keys.append(entry[1])
+            values.append([entry[0]])
+    return make_map(keys, values)
+    
+# question 8
+
+def checkforsquares(k):
+    perfectsquares = []
+    import math
+    for i in range(int(math.sqrt(k))+1):
+        if i != 0:
+            perfectsquares.append(i**2)
+    if len(sum_of_numbers(perfectsquares, k)) >= 2:
+        return True
+    else: 
+        return False
+
+
+# checks whether k is expressible as sum of two squares in two different ways
+   # k = a + b
+   # such that 
+   # squareroot of a = int and squareroot of b = int
+
+def sum_of_numbers(perfectsquares,k):
+    x = []
+    for i in perfectsquares:
+        for g in perfectsquares:
+            if i + g == k:
+                if [i,g] not in x and [g,i] not in x:
+                    x.append([i,g])
+    return x
+
+
+def square_taxi_count(n):
+    numberofnumbers = []
+    for i in range(n):
+        if checkforsquares(i):
+            numberofnumbers.append(i)
+    print(len(numberofnumbers))
+    return numberofnumbers
+
+
+
+
+    
