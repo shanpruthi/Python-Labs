@@ -1,4 +1,4 @@
-# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab1.pdf to access Lab 1
+# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab2.pdf to access lab
 # 1
 print("Welcome to the calculator program.")
 print ('Current Value: 0')
