@@ -1,0 +1,23 @@
+# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab1.pdf to access Lab 1
+# 2.2 Your first Python program
+print('Hello, Python')
+
+# 2.3 Greetings
+print('Hello, Hermione Granger')
+print('Hello, Harry Potter')
+
+x = 'Hermione Granger'
+y = 'Harry Potter'
+
+print('Hello,', x, 'and', y+'. Your names are', y, 'and', x+'. Hi there. Your names are still', x, 'and', y+'.')
+
+# 2.3 Tracing - can simply debug by selecting and clicking ladybug
+
+# 2.4 More Greetings
+y = 'Shan'
+
+def function(y):
+    if y == "Lord Voldemort":  
+        print("I/m not talking to you")
+    else: 
+        print("Hello,", y)
