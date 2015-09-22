@@ -1,0 +1,121 @@
+# See http://www.cs.toronto.edu/~guerzhoy/180/labs/lab3.pdf for lab
+# 1  signature
+N_FLOORS = 10
+def elevator_should_stop(flr, button, e1_from, e1_to, e2_from, e2_to):
+# inputs are invalid if they are not integers, or too many floors using "or"
+# button needs to be either up or down
+# identifying the conditions that are not possible
+    if (flr > 10 or flr < 1 or (button != 'up' and button != 'down') or e1_from > 10 or e1_from < 1 or e1_to > 10 or e1_to < 1 or e2_from > 10 or e2_from < 1 or e2_to > 10 or e2_to < 1):
+        return -1
+
+    e1 = 'no'
+    e2 = 'no'    
+            
+    if e1_from > e1_to and button == 'down' and flr > e1_to and flr < e1_from and e2_from > e2_to and button == 'down' and flr > e2_to and flr < e2_from:
+        if e1_from < e2_from:
+            e1 = 'yes'
+        else:
+            e2 = 'yes'
+            
+    else:
+        if e1_from > e1_to and button == 'down' and flr > e1_to and flr < e1_from:
+            # elevator 1 should stop
+            e1 = 'yes'        
+        if e2_from > e2_to and button == 'down' and flr > e2_to and flr < e2_from:
+            # elevator 2 should stop
+            e2 = 'yes'     
+        
+    if e1_from < e1_to and button == 'up' and flr > e1_from and flr < e1_to and e2_from < e2_to and button == 'up' and flr > e2_from and flr < e2_to:
+        if e1_from > e2_from:
+            e1 = 'yes'
+        else:
+            e2 = 'yes'
+            
+    else:    
+        if e1_from < e1_to and button == 'up' and flr > e1_from and flr < e1_to:
+            # elevator 1 should stop
+            e1 = 'yes'              
+        if e2_from < e2_to and button == 'up' and flr > e2_from and flr < e2_to:
+            #elevator 2 should stop
+            e2 = 'yes'
+        
+    if e1_to == flr:
+        # elevator 1 should stop
+        e1 = 'yes'
+        
+    if e2_to == flr: 
+        # elevator 2 should stop
+        e2 = 'yes'
+
+    # question 2 - devising a testing strategy 
+        
+    if e1 == 'yes' and e2 == 'yes':
+        return 3
+    if e1 == 'yes' and e2 != 'yes':
+        return 1
+    if e2 == 'yes' and e1 != 'yes':
+        return 2
+    return 0
+    # remember that return automatically quits out of the function, and so elif is not needed, and neither is else
+    
+    # question 3a
+    
+def num_days(mth, yr):
+    if mth in [1, 3, 5, 7, 8, 10, 12]:
+        return 31
+    if mth in [4, 6, 9, 11]:
+        return 30
+    if yr%100 == 0 and yr%400!= 0:
+        return 28
+    if yr%4 == 0:
+        return 29
+    return 28
+    
+    # question 3b
+    
+def next_day(y,m,d):
+    if m in [1, 3, 5, 7, 8, 10, 12]:
+        if d <= 30:
+            d = d + 1
+        else:
+            d = 1
+            if m < 12:
+                m = m + 1
+            else:
+                m = 1
+                y = y + 1
+    elif m in [4, 6, 9, 11]:
+         if d <= 29:
+            d = d + 1
+         else:
+            d = 1
+            m = m + 1
+    else:
+        if num_days(m, y) == 29:
+            if d <=28:
+                d = d + 1
+            else:
+                d = 1
+                m = 3
+        if num_days(m, y) == 28:
+            if d<= 27:
+                d = d + 1
+            else: 
+                d = 1
+                m = 3
+    return[y, m, d]
+    
+# question 3c
+# question 3d
+
+def alldatesbetween(fy,fm, fd, ty, tm, td):
+    counter = 0
+    while (fy, fm, fd) != (ty, tm, td):
+        print(fy, fm, fd)
+        [fy, fm, fd] = next_day(fy, fm, fd)
+        counter = counter + 1
+    return counter
+    
+# question 3e is making the program more efficient by using 365 days if one year has passed and 31/30/29/28 days if a month has passed
+
+    
